@@ -2,9 +2,8 @@ from pydantic import BaseModel
 from typing import Optional
 
 class PacienteSchema(BaseModel):
-    id: Optional[str]
-    sepal_lenght: float
-    sepal_width: float
-    petal_length: float
-    petal_width: float
-    species: str
+    id_paciente: Optional[int]
+    nombre_paciente: str
+    apellidos_paciente: str
+    numero_historial_clinico: int
+    observaciones: str
