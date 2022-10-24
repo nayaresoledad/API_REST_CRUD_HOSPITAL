@@ -1,0 +1,56 @@
+import unittest
+import requests
+
+
+
+class TestPacientes(unittest.TestCase):
+   URL= "http://127.0.0.1:8000/pacientes"
+   data = {
+     "id_paciente": "6",
+     "nombre_paciente": "Test",
+     "apellidos_paciente": "Tested",
+     "numero_historial_clinico": 37838,
+     "observaciones": "nomucho"
+    }
+
+   expected_result = {	
+      "id_paciente":	2,
+      "nombre_paciente":	"Carlos",
+      "apellidos_paciente":	"Ruano Sainz",
+      "numero_historial_clinico":	1235,
+      "observaciones":	"Esta sano"
+    }
+
+   def test_1_get_all_pacientes(self):
+     resp = requests.get(self.URL)
+     self.assertEqual(resp.status_code, 200)
+     self.assertEqual(len(resp.json()), 2 )
+     print("Test 1 complete")
+
+   def test_2_post_paciente(self):
+     resp = requests.get(self.URL, json=self.data)
+     self.assertEqual(resp.status_code, 200)
+     print("Test 2 complete")
+
+   def test_3_get_specific_paciente(self):
+      resp = requests.get(self.URL + "/2")
+      self.assertEqual(resp.status_code, 200)
+      self.assertEqual(resp.json(), self.expected_result)
+      print("Test 3 complete")
+
+
+
+
+if __name__ == "__main__":
+ tester = TestPacientes()
+
+ tester.test_1_get_all_pacientes()
+ tester.test_2_post_paciente()
+ tester.test_3_get_specific_paciente()
+
+
+    #Preparación
+
+    #Prueba
+
+    #Verificación
