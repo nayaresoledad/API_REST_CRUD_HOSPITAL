@@ -1,5 +1,6 @@
+from datetime import datetime
 from sqlalchemy import  Table, Column
-from sqlalchemy.sql.sqltypes import Integer, String, Date
+from sqlalchemy.sql.sqltypes import Integer, String, Date, DateTime
 from config.db import engine, meta_data
 
 paciente = Table("paciente", meta_data,
@@ -26,5 +27,11 @@ contacto_paciente = Table("contacto_paciente", meta_data,
     Column("provincia", String(20), nullable=True),
     Column("codigo_postal", String(6), nullable=True),
     Column("telefono", String(9), nullable=True))
+
+codigo_cita = Table("codigo_cita", meta_data,
+    Column("id_paciente", Integer, nullable=True),
+    Column("id_doctor", Integer, nullable=True),
+    Column("fecha_hora", DateTime, primary_key=True),
+    Column("direccion", String(50), nullable=True))
 
 meta_data.create_all(engine)

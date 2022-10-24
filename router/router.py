@@ -1,10 +1,12 @@
+from datetime import date
 from urllib import response
 from fastapi import APIRouter, Response
 from schema.paciente_schema import PacienteSchema
 from schema.doctor_schema import DoctorSchema
 from schema.contactopaciente_schema import ContactopacienteSchema
+from schema.codigocita_schema import CodigocitaSchema
 from config.db import engine
-from model.user import doctor, paciente, contacto_paciente
+from model.user import doctor, paciente, contacto_paciente, codigo_cita
 from starlette.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
 from typing import List
 
@@ -114,4 +116,39 @@ def actualizar_contacto_paciente(data_update: ContactopacienteSchema, paciente_i
 def borrar_contacto_paciente(paciente_id: int):
     with engine.connect() as conn:
         conn.execute(contacto_paciente.delete().where(contacto_paciente.c.id_paciente == paciente_id))
+        return Response(status_code=HTTP_204_NO_CONTENT)
+
+
+#####
+
+@user.get("/codigo_cita", response_model=List[CodigocitaSchema])
+def get_codigo_citas():
+ with engine.connect() as conn:
+    result = conn.execute(codigo_cita.select()).fetchall()
+    return result
+
+@user.get("/codigo_cita/{fechaThora}", response_model=CodigocitaSchema)
+def get_codigo_cita(fechaThora: date):
+    with engine.connect() as conn:
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.fecha_hora == fechaThora)).first()
+        return result
+
+@user.post("/codigo_cita", status_code=HTTP_201_CREATED)
+def crear_codigo_cita(data_contacto: CodigocitaSchema):
+    with engine.connect() as conn:
+        nuevo_contacto = data_contacto.dict()
+        conn.execute(codigo_cita.insert().values(nuevo_contacto))
+        return Response(status_code=HTTP_201_CREATED)
+
+@user.put("/codigo_cita/{fechaThora}")
+def actualizar_codigo_cita(data_update: CodigocitaSchema, fechaThora: date):
+    with engine.connect() as conn:
+        result = conn.execute(codigo_cita.update().where(codigo_cita.c.fecha_hora == fechaThora).values(id_paciente=data_update.id_paciente, id_doctor=data_update.id_doctor, fecha_hora=data_update.fecha_hora, direccion=data_update.direccion))
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.fecha_hora == fechaThora)).first()
+        return result
+
+@user.delete("/codigo_cita/{fechaThora}", status_code=HTTP_204_NO_CONTENT)
+def borrar_codigo_cita(fechaThora: date):
+    with engine.connect() as conn:
+        conn.execute(codigo_cita.delete().where(codigo_cita.c.fecha_hora == fechaThora))
         return Response(status_code=HTTP_204_NO_CONTENT)
