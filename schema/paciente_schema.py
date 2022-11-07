@@ -1,6 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
 
+""""Esto funciona para definir las variables de la base de datos de PGADMING"""
+
+# Se crea la clase Paciente y se definen tipos de variables
 class PacienteSchema(BaseModel):
     id_paciente: Optional[int]
     nombre_paciente: str

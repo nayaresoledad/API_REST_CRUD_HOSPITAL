@@ -4,13 +4,23 @@ from fastapi import FastAPI
 from router.router import user
 
 # Declaramos la variable que va a ser una instancia de FastAPI
-app= FastAPI(
-    title= "Hopital F5",
-    description= "API para la gestión de la base de datos de Hospital F5",
-    openapi_tags=[
-        {"name": "Pacientes","description":"Pacientes del hospital F5"},
-        {"name": "Doctores","description":"Doctores del hospital F5"}
-    ]
+app = FastAPI(
+       title= "Hospital F5 API",                                         #Título de la API
+       description="API para CRUD de la base de datos del Hospital F5",  #Descripción de la API
+       openapi_tags= [{                                                  #Aquí añadiremos descripción de los grupos de tags que hemos hecho en router
+                 "name" : "Pacientes",
+                 "description" : "Rutas de pacientes",
+
+        }, {
+            "name" : "Doctores",
+            "description" : "Rutas de doctores"
+        }, {
+            "name" : "Contactos",
+            "description" : "Rutas de contactos de pacientes"
+        }, {
+            "name" : "Citas",
+            "description" : "Rutas de citas"
+        }]
 )
 
 

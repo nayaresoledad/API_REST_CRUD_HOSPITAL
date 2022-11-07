@@ -2,7 +2,9 @@ from sqlalchemy import  Table, Column
 from sqlalchemy.sql.sqltypes import Integer, String, Date
 from config.db import engine, meta_data
 
-paciente = Table("paciente", meta_data,
+""""Modelos de datos, como voy a guaradar los datos"""
+
+paciente = Table("paciente", meta_data,  #meta sirve para tener mas datos sobre la tabla
     Column("id_paciente", Integer, primary_key=True),
     Column("nombre_paciente", String(40), nullable=True),
     Column("apellidos_paciente", String(40), nullable=True),
@@ -33,4 +35,4 @@ codigo_cita = Table("codigo_cita", meta_data,
     Column("fecha", Date, primary_key=True),
     Column("direccion", String(50), nullable=True))
 
-meta_data.create_all(engine)
+meta_data.create_all(engine) #Para crear la tabla en la base de datos de pgadming
