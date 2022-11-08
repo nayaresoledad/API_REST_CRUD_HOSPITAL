@@ -5,11 +5,12 @@
 ```
 conda create -n nombreEntorno
 ```
-2. Dentro de este entorno será necesario instalar SQLAlchemy , FastAPI y psycopg2:
+2. Dentro de este entorno será necesario instalar SQLAlchemy , FastAPI, psycopg2 y dotenv:
 ```
 pip install sqlalchemy
 pip install fastapi
 pip install psycopg2
+pip install dotenv
 ```
 3. Descarga el contenido del repositorio https://github.com/Factoria-F5-AI-Bootcamp-1-Edicion/hospital-base.git
 4. Solicite los datos de acceso a la base de datos del propietario e introdúzcaos en un archivo **.env** y ponga este archivo en la misma carpeta que el resto de archivos de la API. ![datos sensibles](img/basedatos.png)
@@ -17,7 +18,7 @@ pip install psycopg2
 ```
 uvicorn main:app
 ```
-   esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
+   Esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
 
 6. En la terminal le aparecerá un mensaje que dirá **Uvicorn running on direcciónDelServidor** ![Uvicorn running on direcciónServidor](img/uvicorn.png)
 7. Diríjse a la dirección del servidor dada, se abrirá en su navegador predeterminado.\n 8. A la ruta raíz en la que se encuentra añada /docs, **ejemplo: http://127.0.0.1:8000/docs**
@@ -55,7 +56,21 @@ Esta API le permite al usuario crear, consultar, actualizar y eliminar datos de 
 Al ejecutar el programa por primera vez, se crearan en el servidor 4 tablas: paciente, doctor, contacto_paciente y codigo_cita. Estas tablas están relacionadas de la siguiente manera:
 ![esquemauml](img/esquema.png)
 
+## ***Tecnología utilizada***
+
+- Organización: Metodología SCRUM y Trello.com
+- Lenguajes utilizados: Python y PostgreSQL.
+- Librerías utilizadas: SQLAlchemy, FastAPI, dotenv.
+- Documentación: MarkDown y Swagger.
+
 ## ***Créditos***
 
-Desarrollado por Vaneza, Pablo, Christian y Nayare como ejercicio para el bootcamp de Inteligencia Artifical en Factoría F5.
+Desarrollado por: 
+
+- Vaneza: Scrum Máster
+- Pablo
+- Christian: Product Owner
+- Nayare
+
+Ejercicio para el bootcamp de Inteligencia Artifical en **Factoría F5**.
 > Contacto: hospitalf5@factoriaf5.org 
