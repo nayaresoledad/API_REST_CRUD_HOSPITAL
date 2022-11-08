@@ -24,9 +24,26 @@ uvicorn main:app
 7. En este momento se encuentra en la documentación Swagger de la API, allí encontrará las peticiones que puede hacer al servidor, con su explicación.
 8. Comience a consultar, crear, modificar y eliminar los datos de pacientes, doctores, contactos de pacientes y citas.
 
+## ***Ejecutar el test de la API***
+
+Para comprobar que todo funciona correctamente antes de empezar a realizar consultas a la base de datos con esta API, se recomienda ejecutar el test. Para ello, con la terminal y desde la carpeta raíz donde descargó el contenido del repositorio (por defecto: .../hospital-base) ejecute lo siguiente:
+```
+python tests/test_api
+```
+Tras ejecutar ese comando debería aparecer una salida mostrando los test completados como la siguiente:
+[test](img/test.png)
+
+Si alguno de los 20 tests fallaran habría que revisar el error y arreglar el problema antes de empezar a utilizar la API.
+
+
 ## ***¿Para qué puedo utilizar esta API?***
 
 Esta API le permite al usuario crear, consultar, actualizar y eliminar datos de los pacientes, así como sus datos de contacto y sus citas, y los doctores del Hospital F5.
+
+## ***Esquema UML de las tablas creadas por esta API***
+
+Al ejecutar el programa por primera vez, se crearan en el servidor 4 tablas: paciente, doctor, contacto_paciente y codigo_cita. Estas tablas están relacionadas de la siguiente manera:
+[esquemauml](img/esquema.png)
 
 ## ***Créditos***
 

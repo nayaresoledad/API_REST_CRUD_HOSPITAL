@@ -127,7 +127,7 @@ class TestContacto_Pacientes(unittest.TestCase):
    def test_9_get_all_contacto_pacientes(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 2 )
+     self.assertEqual(len(resp.json()), 0 )
      print("Test 9 complete")
 
    def test_10_post_contacto_paciente(self):
