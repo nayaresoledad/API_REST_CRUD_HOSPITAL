@@ -3,11 +3,13 @@ from fastapi import FastAPI
 # Del archivo router en la carpeta router importamos user que es el nombre que tienen nuestras funciones
 from router.router import user
 
+from doc import docu
+
 # Declaramos la variable que va a ser una instancia de FastAPI
 app = FastAPI(
-       title= "Hospital F5 API",                                         #Título de la API
-       description="API para CRUD de la base de datos del Hospital F5",  #Descripción de la API
-       openapi_tags= [{                                                  #Aquí añadiremos descripción de los grupos de tags que hemos hecho en router
+       title = "Hospital F5 API",                                         #Título de la API
+       description = docu,                                                #Documentación de la API
+       openapi_tags= [{                                                   #Aquí añadiremos descripción de los grupos de tags que hemos hecho en router
                  "name" : "Pacientes",
                  "description" : "Rutas de pacientes",
 
