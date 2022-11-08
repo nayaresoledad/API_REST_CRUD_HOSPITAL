@@ -31,7 +31,7 @@ Para comprobar que todo funciona correctamente antes de empezar a realizar consu
 python tests/test_api
 ```
 Tras ejecutar ese comando debería aparecer una salida mostrando los test completados como la siguiente:
-[test](img/test.png)
+![test](img/test.png)
 
 Si alguno de los 20 tests fallaran habría que revisar el error y arreglar el problema antes de empezar a utilizar la API.
 
@@ -43,7 +43,7 @@ Esta API le permite al usuario crear, consultar, actualizar y eliminar datos de 
 ## ***Esquema UML de las tablas creadas por esta API***
 
 Al ejecutar el programa por primera vez, se crearan en el servidor 4 tablas: paciente, doctor, contacto_paciente y codigo_cita. Estas tablas están relacionadas de la siguiente manera:
-[esquemauml](img/esquema.png)
+![esquemauml](img/esquema.png)
 
 ## ***Créditos***
 
