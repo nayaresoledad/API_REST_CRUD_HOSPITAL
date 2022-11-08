@@ -26,7 +26,7 @@ uvicorn main:app
 
 ## ***Otras rutas de interés en la API***
 
-Añadiendo al final de la **direcciónDelServidor** (**ejemplo: http://127.0.0.1:8000**)estas rutas accederá a diferentes consultas:
+Añadiendo al final de la **direcciónDelServidor** (ejemplo: http://127.0.0.1:8000) estas rutas accederá a diferentes consultas:
 ```
 /pacientes              En esta página podrá consultar los datos de los pacientes disponibles.
 /doctores               En esta página podrá consultar los datos de los doctores disponibles.
