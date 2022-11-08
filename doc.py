@@ -1,0 +1,1 @@
+docu = "***¿Para qué sirve esta API?***\n\n  Esta API ofrece acceso a la base de datos del Hospital F5, pudiendo consultar, crear, modificar y eliminar datos de pacientes, doctores, contactos de los pacientes y citas del Hospital F5. "
