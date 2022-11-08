@@ -1,4 +1,4 @@
-<h1>Hospital Base API<h1>
+Hospital Base API
 ***¿Cómo se instala la API?***
 1. Crea un entorno específicamente para este proyecto. Por ejemplo con conda 
 ```
@@ -23,4 +23,4 @@ Uvicorn running on direcciónServidor
 ```
 7. Diríjse a la dirección del servidor dada, se abrirá en su navegador predeterminado.\n 8. A la ruta raíz en la que se encuentra añada /docs, **ejemplo: http://127.0.0.1:8000/docs**
 7. En este momento se encuentra en la documentación Swagger de la API, allí encontrará las peticiones que puede hacer al servidor, con su explicación.
-8. Comience a consultar, crear, modificar y eliminar.
+8. Comience a consultar, crear, modificar y eliminar los datos de pacientes, doctores, contactos de pacientes y citas.
