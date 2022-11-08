@@ -1,6 +1,6 @@
 from datetime import date
 from urllib import response
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Response, HTTPException
 from schema.paciente_schema import PacienteSchema
 from schema.doctor_schema import DoctorSchema
 from schema.contactopaciente_schema import ContactopacienteSchema
@@ -9,6 +9,21 @@ from config.db import engine
 from model.user import doctor, paciente, contacto_paciente, codigo_cita
 from starlette.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
 from typing import List
+import sqlalchemy as db
+
+
+
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG, #if os.environ.get("DEBUG_MODE") == "1" else logging.INFO, 
+    filename="logging_record.log", 
+    filemode="a",
+    format="%(asctime)s - %(levelname)s - %(message)s")
+
+
+
+
 
 #Guardamos la función router en una variable para usarla después.
 user = APIRouter()
@@ -26,6 +41,7 @@ def root():
 def get_pacientes():
  with engine.connect() as conn:                           #Usamos el entorno with para abrir la conexión con la DB sólo cuando es necesaria (buenas prácticas). Tras usarse, la conexión se cierra.
     result = conn.execute(paciente.select()).fetchall()
+    logging.info("Se ha consultado los pacientes que hay")
     return result
 
 #Buscar paciente por id
@@ -33,6 +49,10 @@ def get_pacientes():
 def get_paciente(paciente_id: int):
     with engine.connect() as conn:
         result = conn.execute(paciente.select().where(paciente.c.id_paciente == paciente_id)).first() #La función first hace que nos devuelva el primer elemento de la lista, ya que solo buscamos un paciente
+        logging.debug(result)
+        if result == None:
+            raise HTTPException(status_code=404, detail="Paciente no encontrado")
+        logging.info(f"Se ha consultado el pacientes con el id {paciente_id}")
         return result    #Devuelve la información del paciente buscado en forma de diccionario 
 
 #Añadir nuevos pacientes a la base de datos
@@ -41,6 +61,7 @@ def crear_paciente(data_paciente: PacienteSchema):                      #Basamos
     with engine.connect() as conn:
         nuevo_paciente = data_paciente.dict()                           #Creamos un diccionario con los datos del nuevo paciente
         conn.execute(paciente.insert().values(nuevo_paciente))          #Conectamos a la DB e insertamos el nuevo paciente
+        logging.info(f"Se ha creado un paciente con {nuevo_paciente}")
         return Response(status_code=HTTP_201_CREATED)                   #Hacemos que cuando sea exitoso devuelva un código 200 CREADO
 
 #Actualizar información de un paciente ya existente
