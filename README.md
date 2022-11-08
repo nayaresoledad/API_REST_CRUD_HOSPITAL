@@ -19,10 +19,20 @@ uvicorn main:app
 ```
    esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
 
-6. En la terminal le aparecerá un mensaje que dirá **Uvicorn running on direcciónServidor** ![Uvicorn running on direcciónServidor](img/uvicorn.png)
+6. En la terminal le aparecerá un mensaje que dirá **Uvicorn running on direcciónDelServidor** ![Uvicorn running on direcciónServidor](img/uvicorn.png)
 7. Diríjse a la dirección del servidor dada, se abrirá en su navegador predeterminado.\n 8. A la ruta raíz en la que se encuentra añada /docs, **ejemplo: http://127.0.0.1:8000/docs**
 7. En este momento se encuentra en la documentación Swagger de la API, allí encontrará las peticiones que puede hacer al servidor, con su explicación.
 8. Comience a consultar, crear, modificar y eliminar los datos de pacientes, doctores, contactos de pacientes y citas.
+
+## ***Otras rutas de interés en la API***
+
+Añadiendo al final de la **direcciónDelServidor** (**ejemplo: http://127.0.0.1:8000**)estas rutas accederá a diferentes consultas:
+```
+/pacientes              En esta página podrá consultar los datos de los pacientes disponibles.
+/doctores               En esta página podrá consultar los datos de los doctores disponibles.
+/contacto_pacientes     En esta página podrá consultar los datos de los contactos disponibles.
+/codigo_cita            En esta página podrá consultar los datos de las citas disponibles.
+```
 
 ## ***Ejecutar el test de la API***
 
