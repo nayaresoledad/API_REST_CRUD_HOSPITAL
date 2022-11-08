@@ -17,9 +17,9 @@ pip install psycopg2
 ```
 uvicorn main:app
 ```
-esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
+   esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
 
-6. En la terminal le aparecerá un mensaje que dirá ![Uvicorn running on direcciónServidor](img/uvicorn.png)
+6. En la terminal le aparecerá un mensaje que dirá **Uvicorn running on direcciónServidor** ![Uvicorn running on direcciónServidor](img/uvicorn.png)
 7. Diríjse a la dirección del servidor dada, se abrirá en su navegador predeterminado.\n 8. A la ruta raíz en la que se encuentra añada /docs, **ejemplo: http://127.0.0.1:8000/docs**
 7. En este momento se encuentra en la documentación Swagger de la API, allí encontrará las peticiones que puede hacer al servidor, con su explicación.
 8. Comience a consultar, crear, modificar y eliminar los datos de pacientes, doctores, contactos de pacientes y citas.
@@ -27,3 +27,8 @@ esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
 ## ***¿Para qué puedo utilizar esta API?***
 
 Esta API le permite al usuario crear, consultar, actualizar y eliminar datos de los pacientes, así como sus datos de contacto y sus citas, y los doctores del Hospital F5.
+
+## ***Créditos***
+
+Desarrollado por Vaneza, Pablo, Christian y Nayare como ejercicio para el bootcamp de Inteligencia Artifical en Factoría F5.
+Contacto: hospitalf5@factoriaf5.org 
