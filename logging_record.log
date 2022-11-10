@@ -1,6 +1,15 @@
-2022-11-10 12:54:45,073 - INFO - Se ha consultado los pacientes que hay
-2022-11-10 12:54:45,277 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-10 12:54:45,380 - DEBUG - (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
-2022-11-10 12:54:45,380 - INFO - Se ha consultado el pacientes con el id 500
-2022-11-10 12:54:45,891 - DEBUG - (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-10 12:54:45,891 - INFO - Se ha consultado el pacientes con el id 500
+2022-11-10 15:00:51,167 - INFO - Started server process [12376]
+2022-11-10 15:00:51,168 - INFO - Waiting for application startup.
+2022-11-10 15:00:51,168 - INFO - Application startup complete.
+2022-11-10 15:01:01,812 - INFO - Se ha consultado los pacientes que hay
+2022-11-10 15:01:01,812 - DEBUG - Estos son los pacientes que se han consultado: []
+2022-11-10 15:01:01,876 - DEBUG - Se intenta crear un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
+2022-11-10 15:01:01,997 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
+2022-11-10 15:01:02,100 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
+2022-11-10 15:01:02,100 - INFO - Se ha buscado al paciente con el id 500
+2022-11-10 15:01:02,282 - DEBUG - Se intentan modificar los datos del paciente 500
+2022-11-10 15:01:02,327 - DEBUG - Estos son los datos que se introducen (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
+2022-11-10 15:01:02,327 - INFO - Se han modificado los datos del paciente con id 500
+2022-11-10 15:01:02,692 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
+2022-11-10 15:01:02,693 - INFO - Se ha buscado al paciente con el id 500
+2022-11-10 15:01:04,641 - INFO - Se han borrado los datos del paciente con id 500
