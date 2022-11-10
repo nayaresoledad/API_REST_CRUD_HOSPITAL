@@ -5,8 +5,10 @@ from typing import Optional
 
 # Se crea la clase Paciente y se definen tipos de variables
 class PacienteSchema(BaseModel):
-    id_paciente: Optional[int]
+    id_paciente: int
     nombre_paciente: str
     apellidos_paciente: str
     numero_historial_clinico: int
-    observaciones: str
+    domicilio: str
+    poblacion_provincia: str
+    telefono: str

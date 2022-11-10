@@ -10,7 +10,9 @@ class TestPacientes(unittest.TestCase):
      "nombre_paciente": "Nombre",
      "apellidos_paciente": "Apellidos",
      "numero_historial_clinico": 123456,
-     "observaciones": "Observaciones de Test"
+     "domicilio": "Calle sin Nombre 123",
+     "poblacion_provincia": "Madrid,MAdsrid",
+     "telefono": "516321456"
     }
 
    Update_data = {
@@ -18,13 +20,15 @@ class TestPacientes(unittest.TestCase):
      "nombre_paciente": "Nombre",
      "apellidos_paciente": "Apellidos",
      "numero_historial_clinico": 123456,
-     "observaciones": "Observaciones de Test Modificadas"
+     "domicilio": "Calle sin Nombre 123",
+     "poblacion_provincia": "Madrid,Madrid",
+     "telefono": "516321456"
     }
 
    def test_1_get_all_pacientes(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 3 )
+     self.assertEqual(len(resp.json()), 0 )
      print("Test 1 complete")
 
    def test_2_post_paciente(self):
@@ -45,10 +49,10 @@ class TestPacientes(unittest.TestCase):
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 4 complete")
 
-   def test_19_delete_specific_paciente(self):
+   def test_14_delete_specific_paciente(self):
       resp = requests.delete(self.URL + "/500")
       self.assertEqual(resp.status_code, 204)
-      print("Test 19 complete")
+      print("Test 14 complete")
 
 class TestDoctores(unittest.TestCase):
    URL= "http://127.0.0.1:8000/doctores"
@@ -77,7 +81,7 @@ class TestDoctores(unittest.TestCase):
    def test_5_get_all_doctores(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 2 )
+     self.assertEqual(len(resp.json()), 0 )
      print("Test 5 complete")
 
    def test_6_post_doctores(self):
@@ -98,60 +102,11 @@ class TestDoctores(unittest.TestCase):
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 8 complete")
 
-   def test_20_delete_specific_doctores(self):
+   def test_15_delete_specific_doctores(self):
       resp = requests.delete(self.URL + "/500")
       self.assertEqual(resp.status_code, 204)
-      print("Test 20 complete")
+      print("Test 15 complete")
 
-class TestContacto_Pacientes(unittest.TestCase):
-   URL= "http://127.0.0.1:8000/contacto_pacientes"
-   
-   data = {
-     "id_paciente": 500,
-     "domicilio": "Domicilio",
-     "poblacion": "Poblacion",
-     "provincia": "Provincia",
-     "codigo_postal": "280005",
-     "telefono": "123456789"
-    }
-
-   Update_data = {
-     "id_paciente": 500,
-     "domicilio": "Domicilio de paciente MODIFICADO",
-     "poblacion": "Poblacion",
-     "provincia": "Provincia",
-     "codigo_postal": "2800 5",
-     "telefono": "123456789"
-    }
-
-   def test_9_get_all_contacto_pacientes(self):
-     resp = requests.get(self.URL)
-     self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 0 )
-     print("Test 9 complete")
-
-   def test_10_post_contacto_paciente(self):
-     resp = requests.post(self.URL, json=self.data)
-     self.assertEqual(resp.status_code, 201)
-     print("Test 10 complete")
-
-   def test_11_get_specific_contacto_paciente(self):
-      resp = requests.get(self.URL + "/500")
-      self.assertEqual(resp.status_code, 200)
-      self.assertEqual(resp.json(), self.data)
-      print("Test 11 complete")
-
-   def test_12_update_specific_contacto_paciente(self):
-      resp = requests.put(self.URL + "/500", json=self.Update_data)
-      self.assertEqual(resp.status_code, 200)
-      resp = requests.get(self.URL + "/500")
-      self.assertEqual(resp.json(), self.Update_data)
-      print("Test 12 complete")
-
-   def test_13_delete_specific_contacto_paciente(self):
-      resp = requests.delete(self.URL + "/500")
-      self.assertEqual(resp.status_code, 204)
-      print("Test 13 complete")
 
 class TestCodigo_cita(unittest.TestCase):
    URL= "http://127.0.0.1:8000/codigo_cita"
@@ -170,34 +125,34 @@ class TestCodigo_cita(unittest.TestCase):
     "direccion": "La direccion actualizada"
   }
 
-   def test_14_get_all_codigo_cita(self):
+   def test_9_get_all_codigo_cita(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 2 )
-     print("Test 14 complete")
+     self.assertEqual(len(resp.json()), 0 )
+     print("Test 9 complete")
 
-   def test_15_post_codigo_cita(self):
+   def test_10_post_codigo_cita(self):
      resp = requests.post(self.URL, json=self.data)
      self.assertEqual(resp.status_code, 201)
-     print("Test 15 complete")
+     print("Test 10 complete")
 
-   def test_16_get_specific_codigo_cita(self):
+   def test_11_get_specific_codigo_cita(self):
       resp = requests.get(self.URL + "/500")
       self.assertEqual(resp.status_code, 200)
       self.assertEqual(resp.json(), self.data)
-      print("Test 16 complete")
+      print("Test 11 complete")
 
-   def test_17_update_specific_codigo_cita(self):
+   def test_12_update_specific_codigo_cita(self):
       resp = requests.put(self.URL + "/500", json=self.Update_data)
       self.assertEqual(resp.status_code, 200)
       resp = requests.get(self.URL + "/500")
       self.assertEqual(resp.json(), self.Update_data)
-      print("Test 17 complete")
+      print("Test 12 complete")
 
-   def test_18_delete_specific_codigo_cita(self):
+   def test_13_delete_specific_codigo_cita(self):
       resp = requests.delete(self.URL + "/500")
       self.assertEqual(resp.status_code, 204)
-      print("Test 18 complete")
+      print("Test 13 complete")
 
 
 
@@ -217,22 +172,14 @@ if __name__ == "__main__":
  tester_Doctores.test_7_get_specific_doctores()
  tester_Doctores.test_8_update_specific_doctores()
 
- tester_Contacto_Pacientes = TestContacto_Pacientes()
-
- tester_Contacto_Pacientes.test_9_get_all_contacto_pacientes()
- tester_Contacto_Pacientes.test_10_post_contacto_paciente()
- tester_Contacto_Pacientes.test_11_get_specific_contacto_paciente()
- tester_Contacto_Pacientes.test_12_update_specific_contacto_paciente()
- tester_Contacto_Pacientes.test_13_delete_specific_contacto_paciente()
-
  tester_Codigo_Cita = TestCodigo_cita()
 
- tester_Codigo_Cita.test_14_get_all_codigo_cita()
- tester_Codigo_Cita.test_15_post_codigo_cita()
- tester_Codigo_Cita.test_16_get_specific_codigo_cita()
- tester_Codigo_Cita.test_17_update_specific_codigo_cita()
- tester_Codigo_Cita.test_18_delete_specific_codigo_cita()
+ tester_Codigo_Cita.test_9_get_all_codigo_cita()
+ tester_Codigo_Cita.test_10_post_codigo_cita()
+ tester_Codigo_Cita.test_11_get_specific_codigo_cita()
+ tester_Codigo_Cita.test_12_update_specific_codigo_cita()
+ tester_Codigo_Cita.test_13_delete_specific_codigo_cita()
 
  # Test de borrado
- tester_Pacientes.test_19_delete_specific_paciente()
- tester_Doctores.test_20_delete_specific_doctores()
+ tester_Pacientes.test_14_delete_specific_paciente()
+ tester_Doctores.test_15_delete_specific_doctores()

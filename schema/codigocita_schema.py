@@ -6,7 +6,7 @@ from datetime import date
 
 # se crea clase citas se definen tipos de variables
 class CodigocitaSchema(BaseModel):
-    id_paciente: Optional[int]
-    id_doctor: Optional[int]
     fecha: date
     direccion: str
+    id_paciente: int
+    id_doctor: int

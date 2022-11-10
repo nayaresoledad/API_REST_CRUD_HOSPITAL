@@ -6,7 +6,7 @@ from datetime import date
 
 #Se crea la clase Doctor se definen tipos de variables
 class DoctorSchema(BaseModel):
-    id_doctor: Optional[int]
+    id_doctor: int
     nombre: str
     apellidos: str
     sexo: str

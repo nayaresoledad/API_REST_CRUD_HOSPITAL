@@ -17,9 +17,6 @@ app = FastAPI(
             "name" : "Doctores",
             "description" : "Rutas de doctores"
         }, {
-            "name" : "Contactos",
-            "description" : "Rutas de contactos de pacientes"
-        }, {
             "name" : "Citas",
             "description" : "Rutas de citas"
         }]

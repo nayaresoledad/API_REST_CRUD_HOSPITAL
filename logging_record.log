@@ -1,0 +1,6 @@
+2022-11-10 12:54:45,073 - INFO - Se ha consultado los pacientes que hay
+2022-11-10 12:54:45,277 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
+2022-11-10 12:54:45,380 - DEBUG - (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
+2022-11-10 12:54:45,380 - INFO - Se ha consultado el pacientes con el id 500
+2022-11-10 12:54:45,891 - DEBUG - (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
+2022-11-10 12:54:45,891 - INFO - Se ha consultado el pacientes con el id 500
