@@ -44,7 +44,7 @@ class TestPacientes(unittest.TestCase):
 
    def test_4_update_specific_paciente(self):
       resp = requests.put(self.URL + "/500", json=self.Update_data)
-      self.assertEqual(resp.status_code, 200)
+      self.assertEqual(resp.status_code, 202)
       resp = requests.get(self.URL + "/500")
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 4 complete")
@@ -97,7 +97,7 @@ class TestDoctores(unittest.TestCase):
 
    def test_8_update_specific_doctores(self):
       resp = requests.put(self.URL + "/500", json=self.Update_data)
-      self.assertEqual(resp.status_code, 200)
+      self.assertEqual(resp.status_code, 202)
       resp = requests.get(self.URL + "/500")
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 8 complete")
@@ -144,7 +144,7 @@ class TestCodigo_cita(unittest.TestCase):
 
    def test_12_update_specific_codigo_cita(self):
       resp = requests.put(self.URL + "/500", json=self.Update_data)
-      self.assertEqual(resp.status_code, 200)
+      self.assertEqual(resp.status_code, 202)
       resp = requests.get(self.URL + "/500")
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 12 complete")

@@ -4,11 +4,10 @@ from urllib import response
 from fastapi import APIRouter, Response, HTTPException
 from schema.paciente_schema import PacienteSchema
 from schema.doctor_schema import DoctorSchema
-from schema.contactopaciente_schema import ContactopacienteSchema
 from schema.codigocita_schema import CodigocitaSchema
 from config.db import engine
 from model.user import doctor, paciente, codigo_cita
-from starlette.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT
 from typing import List
 import sqlalchemy as db
 import logging
@@ -64,7 +63,7 @@ async def crear_paciente(data_paciente: PacienteSchema):                      #B
         return Response(status_code=HTTP_201_CREATED)                   #Hacemos que cuando sea exitoso devuelva un código 200 CREADO
 
 #Actualizar información de un paciente ya existente
-@user.put("/pacientes/{paciente_id}", tags=["Pacientes"])
+@user.put("/pacientes/{paciente_id}", status_code=HTTP_202_ACCEPTED, tags=["Pacientes"])
 async def actualizar_paciente(data_update: PacienteSchema, paciente_id: int):
     with engine.connect() as conn:
         result = conn.execute(paciente.update().where(paciente.c.id_paciente == paciente_id).values(id_paciente=data_update.id_paciente, nombre_paciente=data_update.nombre_paciente, apellidos_paciente=data_update.apellidos_paciente, numero_historial_clinico=data_update.numero_historial_clinico, domicilio=data_update.domicilio, poblacion_provincia=data_update.poblacion_provincia, telefono=data_update.telefono))
@@ -91,6 +90,8 @@ async def borrar_paciente(paciente_id: int):
 async def get_doctores():
  with engine.connect() as conn:
     result = conn.execute(doctor.select()).fetchall()
+    logging.info("Se ha consultado los doctores que hay")
+    logging.debug(f"Estos son los dotores que se han consultado: {result}")
     return result
 
 #Buscar doctores por id
@@ -98,6 +99,11 @@ async def get_doctores():
 async def get_doctor(doctor_id: int):
     with engine.connect() as conn:
         result = conn.execute(doctor.select().where(doctor.c.id_doctor == doctor_id)).first()
+        logging.debug(f"Doctor que se intenta buscar:{result}")
+        if result == None:
+            logging.error(f"Se ha buscado el id de doctor {doctor_id} pero no existe")
+            raise HTTPException(status_code=404, detail="Doctor no encontrado")
+        logging.info(f"Se ha buscado al doctor con el id {doctor_id}")
         return result    
 
 #Añadir nuevos doctores a la base de datos
@@ -105,15 +111,20 @@ async def get_doctor(doctor_id: int):
 async def crear_doctor(data_doctor: DoctorSchema):
     with engine.connect() as conn:
         nuevo_doctor = data_doctor.dict()
+        logging.debug(f"Se intenta crear un doctor con {nuevo_doctor}")
         conn.execute(doctor.insert().values(nuevo_doctor))
+        logging.info(f"Se ha creado un paciente con {nuevo_doctor}")
         return Response(status_code=HTTP_201_CREATED)
 
 #Actualizar información de un doctor ya existente
-@user.put("/doctores/{doctor_id}", tags=["Doctores"])
+@user.put("/doctores/{doctor_id}", status_code=HTTP_202_ACCEPTED, tags=["Doctores"])
 async def actualizar_doctor(data_update: DoctorSchema, doctor_id: int):
     with engine.connect() as conn:
         result = conn.execute(doctor.update().where(doctor.c.id_doctor == doctor_id).values(id_doctor=data_update.id_doctor, nombre=data_update.nombre, apellidos=data_update.apellidos, sexo=data_update.sexo, fecha_nacimiento=data_update.fecha_nacimiento, especialidad=data_update.especialidad, numero_colegiado=data_update.numero_colegiado, cargo=data_update.cargo))
+        logging.debug(f"Se intentan modificar los datos del doctor con id {doctor_id}")
         result = conn.execute(doctor.select().where(doctor.c.id_doctor == doctor_id)).first()
+        logging.debug(f"Estos son los datos que se introducen {result}")
+        logging.info(f"Se han modificado los datos del doctor con id {doctor_id}")
         return result
 
 #Borrar un doctor
@@ -121,6 +132,7 @@ async def actualizar_doctor(data_update: DoctorSchema, doctor_id: int):
 async def borrar_doctor(doctor_id: int):
     with engine.connect() as conn:
         conn.execute(doctor.delete().where(doctor.c.id_doctor == doctor_id))
+        logging.info(f"Se han borrado los datos del doctor con id {doctor_id}")
         return Response(status_code=HTTP_204_NO_CONTENT)
         
 
@@ -132,6 +144,8 @@ async def borrar_doctor(doctor_id: int):
 async def get_codigo_citas():
  with engine.connect() as conn:
     result = conn.execute(codigo_cita.select()).fetchall()
+    logging.info("Se ha consultado las citas que hay")
+    logging.debug(f"Estas son las citas que se han consultado: {result}")
     return result
 
 #Buscar citas por fecha
@@ -139,22 +153,32 @@ async def get_codigo_citas():
 async def get_codigo_cita( paciente_id: int):
     with engine.connect() as conn:
         result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_paciente == paciente_id)).first()
+        logging.debug(f"Cita que se intenta buscar:{result}")
+        if result == None:
+            logging.error(f"Se ha buscado la cita del paciente con id {paciente_id} pero no existe")
+            raise HTTPException(status_code=404, detail="Cita no encontrada")
+        logging.info(f"Se ha buscado las citas del paciente con id {paciente_id}")
         return result
 
 #Añadir nuevas citas a la base de datos
 @user.post("/codigo_cita", status_code=HTTP_201_CREATED, tags=["Citas"])
-async def crear_codigo_cita(data_contacto: CodigocitaSchema):
+async def crear_codigo_cita(data_cita: CodigocitaSchema):
     with engine.connect() as conn:
-        nuevo_contacto = data_contacto.dict()
-        conn.execute(codigo_cita.insert().values(nuevo_contacto))
+        nueva_cita = data_cita.dict()
+        logging.debug(f"Se intenta crear una cita con {nueva_cita}")
+        conn.execute(codigo_cita.insert().values(nueva_cita))
+        logging.info(f"Se ha creado una cita con {nueva_cita}")
         return Response(status_code=HTTP_201_CREATED)
 
 #Actualizar información de una cita ya existente
-@user.put("/codigo_cita/{paciente_id}", tags=["Citas"])
+@user.put("/codigo_cita/{paciente_id}", status_code=HTTP_202_ACCEPTED, tags=["Citas"])
 async def actualizar_codigo_cita(data_update: CodigocitaSchema, paciente_id: int):
     with engine.connect() as conn:
         result = conn.execute(codigo_cita.update().where(codigo_cita.c.id_paciente == paciente_id).values(id_paciente=data_update.id_paciente, id_doctor=data_update.id_doctor, fecha=data_update.fecha, direccion=data_update.direccion))
+        logging.debug(f"Se intentan modificar las citas del paciente con id {paciente_id}")
         result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_paciente == paciente_id)).first()
+        logging.debug(f"Estos son los datos que se introducen en la cita {result}")
+        logging.info(f"Se han modificado las citas del paciente con id {paciente_id}")
         return result
 
 #Borrar una cita
@@ -162,4 +186,5 @@ async def actualizar_codigo_cita(data_update: CodigocitaSchema, paciente_id: int
 async def borrar_codigo_cita(paciente_id: int):
     with engine.connect() as conn:
         conn.execute(codigo_cita.delete().where(codigo_cita.c.id_paciente == paciente_id))
+        logging.info(f"Se han borrado las citas del paciente con id {paciente_id}")
         return Response(status_code=HTTP_204_NO_CONTENT)
