@@ -1,6 +1,6 @@
 import unittest
 import requests
-
+from typing import List
 
 
 class TestPacientes(unittest.TestCase):
@@ -28,7 +28,7 @@ class TestPacientes(unittest.TestCase):
    def test_1_get_all_pacientes(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 0 )
+     self.assertEqual(len(resp.json()), 4 )
      print("Test 1 complete")
 
    def test_2_post_paciente(self):
@@ -81,7 +81,7 @@ class TestDoctores(unittest.TestCase):
    def test_5_get_all_doctores(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 0 )
+     self.assertEqual(len(resp.json()), 2 )
      print("Test 5 complete")
 
    def test_6_post_doctores(self):
@@ -115,20 +115,28 @@ class TestCodigo_cita(unittest.TestCase):
     "id_paciente": 500,
     "id_doctor": 500,
     "fecha": "2022-10-27",
-    "direccion": "La direccion tal"
+    "direccion": "La direccion 1"
   }
 
    Update_data = {
     "id_paciente": 500,
     "id_doctor": 500,
     "fecha": "2022-10-27",
-    "direccion": "La direccion actualizada"
+    "direccion": "La direccion 2"
   }
+   listado = [
+      {
+      "id_paciente": 500,
+      "id_doctor": 500,
+      "fecha": "2022-10-27",
+      "direccion": "La direccion 1"
+      }
+    ]
 
    def test_9_get_all_codigo_cita(self):
      resp = requests.get(self.URL)
      self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 0 )
+     self.assertEqual(len(resp.json()), 4 )
      print("Test 9 complete")
 
    def test_10_post_codigo_cita(self):
@@ -137,20 +145,20 @@ class TestCodigo_cita(unittest.TestCase):
      print("Test 10 complete")
 
    def test_11_get_specific_codigo_cita(self):
-      resp = requests.get(self.URL + "/500")
+      resp = requests.get(self.URL + "/paciente500")
       self.assertEqual(resp.status_code, 200)
-      self.assertEqual(resp.json(), self.data)
+      self.assertEqual(resp.json(), self.listado)
       print("Test 11 complete")
 
    def test_12_update_specific_codigo_cita(self):
-      resp = requests.put(self.URL + "/500", json=self.Update_data)
+      resp = requests.put(self.URL + "/2022-10-27", json=self.Update_data)
       self.assertEqual(resp.status_code, 202)
-      resp = requests.get(self.URL + "/500")
+      resp = requests.get(self.URL + "/2022-10-27")
       self.assertEqual(resp.json(), self.Update_data)
       print("Test 12 complete")
 
    def test_13_delete_specific_codigo_cita(self):
-      resp = requests.delete(self.URL + "/500")
+      resp = requests.delete(self.URL + "/2022-10-27")
       self.assertEqual(resp.status_code, 204)
       print("Test 13 complete")
 

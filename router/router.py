@@ -6,12 +6,13 @@ from config.db import engine
 from model.user import doctor, paciente, codigo_cita
 from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_503_SERVICE_UNAVAILABLE
 from typing import List
+from datetime import date
 import logging
 
 #Configuramos un logger para trackear las acciones en el CRUD
 logging.basicConfig(
     level=logging.DEBUG, # if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
-    filename="logger/logging_record.log", 
+    filename="logging_record.log", 
     filemode="w", #Cmabiar a "a" cuando no se quiera sobreescribir los logs
     format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -140,16 +141,40 @@ async def get_codigo_citas():
     logging.debug(f"Estas son las citas que se han consultado: {result}")
     return result
 
-#Buscar citas por fecha
-@user.get("/codigo_cita/{paciente_id}", response_model=CodigocitaSchema, summary="Consulta lacita del paciente con el id introducido", tags=["Citas"])
+#Buscar citas por id de paciente
+@user.get("/codigo_cita/paciente{paciente_id}", response_model=List[CodigocitaSchema], summary="Consulta la cita del paciente con el id introducido", tags=["Citas"])
 async def get_codigo_cita( paciente_id: int):
     with engine.connect() as conn:
-        result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_paciente == paciente_id)).first()
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_paciente == paciente_id)).fetchall()
         logging.debug(f"Cita que se intenta buscar:{result}")
         if result == None:
             logging.error(f"Se ha buscado la cita del paciente con id {paciente_id} pero no existe")
             raise HTTPException(status_code=404, detail="Cita no encontrada")
         logging.info(f"Se ha buscado las citas del paciente con id {paciente_id}")
+        return result
+
+#Buscar citas por id de doctor
+@user.get("/codigo_cita/doctor{doctor_id}", response_model=List[CodigocitaSchema], summary="Consulta la cita del doctor con el id introducido", tags=["Citas"])
+async def get_codigo_cita( doctor_id: int):
+    with engine.connect() as conn:
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_doctor == doctor_id)).fetchall()
+        logging.debug(f"Cita que se intenta buscar:{result}")
+        if result == None:
+            logging.error(f"Se ha buscado la cita del doctor con id {doctor_id} pero no existe")
+            raise HTTPException(status_code=404, detail="Cita no encontrada")
+        logging.info(f"Se ha buscado las citas del doctor con id {doctor_id}")
+        return result
+
+#Buscar citas por id de doctor
+@user.get("/codigo_cita/{date}", response_model=CodigocitaSchema, summary="Consulta la cita de la fecha introducida", tags=["Citas"])
+async def get_codigo_cita( date: date):
+    with engine.connect() as conn:
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.fecha == date)).first()
+        logging.debug(f"Cita que se intenta buscar:{result}")
+        if result == None:
+            logging.error(f"Se ha buscado la cita del dia {date} pero no existe")
+            raise HTTPException(status_code=404, detail="Cita no encontrada")
+        logging.info(f"Se ha buscado la cita del dia {date}")
         return result
 
 #Añadir nuevas citas a la base de datos
@@ -163,20 +188,20 @@ async def crear_codigo_cita(data_cita: CodigocitaSchema):
         return Response(status_code=HTTP_201_CREATED)
 
 #Actualizar información de una cita ya existente
-@user.put("/codigo_cita/{paciente_id}", status_code=HTTP_202_ACCEPTED, tags=["Citas"], summary="Actualiza la información de una cita ya existente")
-async def actualizar_codigo_cita(data_update: CodigocitaSchema, paciente_id: int):
+@user.put("/codigo_cita/{date}", status_code=HTTP_202_ACCEPTED, tags=["Citas"], summary="Actualiza la información de una cita ya existente")
+async def actualizar_codigo_cita(data_update: CodigocitaSchema, date: date):
     with engine.connect() as conn:
-        result = conn.execute(codigo_cita.update().where(codigo_cita.c.id_paciente == paciente_id).values(id_paciente=data_update.id_paciente, id_doctor=data_update.id_doctor, fecha=data_update.fecha, direccion=data_update.direccion))
-        logging.debug(f"Se intentan modificar las citas del paciente con id {paciente_id}")
-        result = conn.execute(codigo_cita.select().where(codigo_cita.c.id_paciente == paciente_id)).first()
+        result = conn.execute(codigo_cita.update().where(codigo_cita.c.fecha == date).values(id_paciente=data_update.id_paciente, id_doctor=data_update.id_doctor, fecha=data_update.fecha, direccion=data_update.direccion))
+        logging.debug(f"Se intentan modificar las citas del dia {date}")
+        result = conn.execute(codigo_cita.select().where(codigo_cita.c.fecha == date)).first()
         logging.debug(f"Estos son los datos que se introducen en la cita {result}")
-        logging.info(f"Se han modificado las citas del paciente con id {paciente_id}")
+        logging.info(f"Se han modificado las citas del dia {date}")
         return result
 
 #Borrar una cita
-@user.delete("/codigo_cita/{paciente_id}", status_code=HTTP_204_NO_CONTENT, tags=["Citas"], summary="Borra la información de la cita con id de paciente seleccionado")
-async def borrar_codigo_cita(paciente_id: int):
+@user.delete("/codigo_cita/{date}", status_code=HTTP_204_NO_CONTENT, tags=["Citas"], summary="Borra la información de la cita con id de paciente seleccionado")
+async def borrar_codigo_cita(date: date):
     with engine.connect() as conn:
-        conn.execute(codigo_cita.delete().where(codigo_cita.c.id_paciente == paciente_id))
-        logging.info(f"Se han borrado las citas del paciente con id {paciente_id}")
+        conn.execute(codigo_cita.delete().where(codigo_cita.c.fecha == date))
+        logging.info(f"Se han borrado las citas del dia {date}")
         return Response(status_code=HTTP_204_NO_CONTENT)

@@ -5,4 +5,3 @@ config/__pycache__/
 model/__pycache__/
 router/__pycache__/
 schema/__pycache__/
-logging_record.log
