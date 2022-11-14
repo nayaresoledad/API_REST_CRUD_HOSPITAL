@@ -1,6 +1,5 @@
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import MetaData
 import sqlalchemy
-
 from config.settings import Settings
 
 settings = Settings()

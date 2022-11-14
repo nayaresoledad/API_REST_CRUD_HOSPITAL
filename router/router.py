@@ -1,6 +1,3 @@
-from datetime import date
-import os
-from urllib import response
 from fastapi import APIRouter, Response, HTTPException
 from schema.paciente_schema import PacienteSchema
 from schema.doctor_schema import DoctorSchema
@@ -9,20 +6,17 @@ from config.db import engine
 from model.user import doctor, paciente, codigo_cita
 from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_503_SERVICE_UNAVAILABLE
 from typing import List
-import sqlalchemy as db
 import logging
-from pydantic import BaseModel, validator, ValidationError
 
 #Configuramos un logger para trackear las acciones en el CRUD
 logging.basicConfig(
     level=logging.DEBUG, # if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
-    filename="logging_record.log", 
+    filename="logger/logging_record.log", 
     filemode="w", #Cmabiar a "a" cuando no se quiera sobreescribir los logs
     format="%(asctime)s - %(levelname)s - %(message)s")
 
 #Guardamos la función router en una variable para usarla después.
 user = APIRouter()
-
 
 #Página principal, la bienvenida a nuestro hospital
 @user.get("/", tags=["pagina principal"],status_code=200, summary="Página principal")  #Indicamos aqui la ruta en la que se hará la consulta (get), y el tag apropiado para esa ruta
@@ -30,9 +24,7 @@ async def root():
     logging.info("Se ha entrado en la raiz")
     return "Esto es Hospital F5"
 
-
-###Tabla Pacientes
-
+#TABLA PACIENTES
 #Buscar todos los pacientes
 @user.get("/pacientes", response_model=List[PacienteSchema],summary="Consulta todos los pacientes", tags=["Pacientes"])
 async def get_pacientes():
@@ -57,8 +49,6 @@ async def get_paciente(paciente_id: int):
             raise HTTPException(status_code=404, detail="Paciente no encontrado")
         logging.info(f"Se ha buscado al paciente con el id {paciente_id}")
         return result    #Devuelve la información del paciente buscado en forma de diccionario
-
-        
 
 #Añadir nuevos pacientes a la base de datos
 @user.post("/pacientes", status_code=HTTP_201_CREATED, tags=["Pacientes"], summary="Añade un nuevo paciente")
@@ -89,10 +79,7 @@ async def borrar_paciente(paciente_id: int):
         logging.info(f"Se han borrado los datos del paciente con id {paciente_id}")
         return Response(status_code=HTTP_204_NO_CONTENT)
 
-
-
-####Tabla doctores
-
+#TABLA DOCTORES
 #Buscar todos los doctores
 @user.get("/doctores", response_model=List[DoctorSchema], summary="Consulta todos los doctores", tags=["Doctores"])
 async def get_doctores():
@@ -142,11 +129,8 @@ async def borrar_doctor(doctor_id: int):
         conn.execute(doctor.delete().where(doctor.c.id_doctor == doctor_id))
         logging.info(f"Se han borrado los datos del doctor con id {doctor_id}")
         return Response(status_code=HTTP_204_NO_CONTENT)
-        
 
-
-#####Tabla citas
-
+#TABLA CITAS
 #Buscar todas las citas
 @user.get("/codigo_cita", response_model=List[CodigocitaSchema], summary="Consulta todos las citas", tags=["Citas"])
 async def get_codigo_citas():
