@@ -1,3 +1,7 @@
-2022-11-14 09:38:13,359 - INFO - Started server process [1012]
-2022-11-14 09:38:13,359 - INFO - Waiting for application startup.
-2022-11-14 09:38:13,360 - INFO - Application startup complete.
+2022-11-14 09:40:22,463 - INFO - Started server process [8044]
+2022-11-14 09:40:22,463 - INFO - Waiting for application startup.
+2022-11-14 09:40:22,464 - INFO - Application startup complete.
+2022-11-14 09:41:21,579 - INFO - Shutting down
+2022-11-14 09:41:21,690 - INFO - Waiting for application shutdown.
+2022-11-14 09:41:21,692 - INFO - Application shutdown complete.
+2022-11-14 09:41:21,693 - INFO - Finished server process [8044]
