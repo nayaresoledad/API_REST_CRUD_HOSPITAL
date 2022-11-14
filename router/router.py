@@ -7,20 +7,22 @@ from schema.doctor_schema import DoctorSchema
 from schema.codigocita_schema import CodigocitaSchema
 from config.db import engine
 from model.user import doctor, paciente, codigo_cita
-from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT
+from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_503_SERVICE_UNAVAILABLE
 from typing import List
 import sqlalchemy as db
 import logging
+from pydantic import BaseModel, validator, ValidationError
 
 #Configuramos un logger para trackear las acciones en el CRUD
 logging.basicConfig(
-    level=logging.DEBUG, #if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
+    level=logging.DEBUG, # if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
     filename="logging_record.log", 
     filemode="w", #Cmabiar a "a" cuando no se quiera sobreescribir los logs
     format="%(asctime)s - %(levelname)s - %(message)s")
 
 #Guardamos la función router en una variable para usarla después.
 user = APIRouter()
+
 
 #Página principal, la bienvenida a nuestro hospital
 @user.get("/", tags=["pagina principal"],status_code=200)  #Indicamos aqui la ruta en la que se hará la consulta (get), y el tag apropiado para esa ruta
@@ -34,11 +36,15 @@ async def root():
 #Buscar todos los pacientes
 @user.get("/pacientes", response_model=List[PacienteSchema], tags=["Pacientes"])
 async def get_pacientes():
- with engine.connect() as conn:                           #Usamos el entorno with para abrir la conexión con la DB sólo cuando es necesaria (buenas prácticas). Tras usarse, la conexión se cierra.
-    result = conn.execute(paciente.select()).fetchall()
-    logging.info("Se ha consultado los pacientes que hay")
-    logging.debug(f"Estos son los pacientes que se han consultado: {result}")
-    return result
+    with engine.connect() as conn:                           #Usamos el entorno with para abrir la conexión con la DB sólo cuando es necesaria (buenas prácticas). Tras usarse, la conexión se cierra.
+        try:
+            result = conn.execute(paciente.select()).fetchall()
+            logging.info("Se ha consultado los pacientes que hay")
+            logging.debug(f"Estos son los pacientes que se han consultado: {result}")
+            return result
+        except Exception:
+            logging.error("Error al buscar los pacientes", exc_info = True)
+            return Response(status_code=HTTP_503_SERVICE_UNAVAILABLE)
 
 #Buscar paciente por id
 @user.get("/pacientes/{paciente_id}", response_model=PacienteSchema, tags=["Pacientes"]) #En este caso a la direccion paciente le añadiremos un id
@@ -51,6 +57,8 @@ async def get_paciente(paciente_id: int):
             raise HTTPException(status_code=404, detail="Paciente no encontrado")
         logging.info(f"Se ha buscado al paciente con el id {paciente_id}")
         return result    #Devuelve la información del paciente buscado en forma de diccionario
+
+        
 
 #Añadir nuevos pacientes a la base de datos
 @user.post("/pacientes", status_code=HTTP_201_CREATED, tags=["Pacientes"])
