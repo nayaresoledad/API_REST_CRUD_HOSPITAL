@@ -1,88 +1,56 @@
-2022-11-15 12:06:45,536 - INFO - Se ha consultado los pacientes que hay
-2022-11-15 12:06:45,537 - DEBUG - Estos son los pacientes que se han consultado: [(1, 'Juan', 'Anacleto', 1, 'Calle 1', 'Madrid', '123456789'), (2, 'Carlos', 'Benancio', 2, 'Calle 2', 'Madrid', '234567891'), (3, 'Antonio', 'Caralarga', 3, 'Calle 3', 'Madrid', '345678912'), (4, 'Miguel', 'Donostia', 4, 'Calle 4', 'Madrid', '456789123')]
-2022-11-15 12:06:46,014 - DEBUG - Se intenta crear un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:06:46,125 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:06:46,227 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
-2022-11-15 12:06:46,228 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:06:46,356 - DEBUG - Se intentan modificar los datos del paciente 500
-2022-11-15 12:06:46,432 - DEBUG - Estos son los datos que se introducen (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:06:46,432 - INFO - Se han modificado los datos del paciente con id 500
-2022-11-15 12:06:46,559 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:06:46,559 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:06:46,663 - INFO - Se ha consultado los doctores que hay
-2022-11-15 12:06:46,663 - DEBUG - Estos son los dotores que se han consultado: [(1, 'Doctor', 'Señor Doctor', 'Hombre', datetime.date(1975, 11, 14), 'La vida', 1001, 'Currito'), (2, 'Doctora', 'Señora Doctora', 'Mujer', datetime.date(1987, 11, 17), 'Neumologia', 1002, 'Jefaza')]
-2022-11-15 12:06:46,689 - DEBUG - Se intenta crear un doctor con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
-2022-11-15 12:06:46,788 - INFO - Se ha creado un paciente con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
-2022-11-15 12:06:46,889 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor')
-2022-11-15 12:06:46,889 - INFO - Se ha buscado al doctor con el id 500
-2022-11-15 12:06:47,047 - DEBUG - Se intentan modificar los datos del doctor con id 500
-2022-11-15 12:06:47,095 - DEBUG - Estos son los datos que se introducen (500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
-2022-11-15 12:06:47,095 - INFO - Se han modificado los datos del doctor con id 500
-2022-11-15 12:06:47,252 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
-2022-11-15 12:06:47,252 - INFO - Se ha buscado al doctor con el id 500
-2022-11-15 12:06:47,391 - INFO - Se ha consultado las citas que hay
-2022-11-15 12:06:47,391 - DEBUG - Estas son las citas que se han consultado: [(1, 2, datetime.date(2022, 11, 18), 'La clinica'), (3, 2, datetime.date(2022, 11, 19), 'La clinica'), (4, 2, datetime.date(2022, 11, 20), 'La clinica'), (1, 1, datetime.date(2022, 11, 17), 'El hospi')]
-2022-11-15 12:06:47,460 - DEBUG - Se intenta crear una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
-2022-11-15 12:06:47,558 - INFO - Se ha creado una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
-2022-11-15 12:06:47,609 - DEBUG - Cita que se intenta buscar:[(500, 500, datetime.date(2022, 10, 27), 'La direccion 1')]
-2022-11-15 12:06:47,609 - INFO - Se ha buscado las citas del paciente con id 500
-2022-11-15 12:06:47,763 - DEBUG - Se intentan modificar las citas del dia 2022-10-27
-2022-11-15 12:06:47,810 - DEBUG - Estos son los datos que se introducen en la cita (500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
-2022-11-15 12:06:47,810 - INFO - Se han modificado las citas del dia 2022-10-27
-2022-11-15 12:06:47,921 - DEBUG - Cita que se intenta buscar:(500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
-2022-11-15 12:06:47,921 - INFO - Se ha buscado la cita del dia 2022-10-27
-2022-11-15 12:06:48,098 - INFO - Se han borrado las citas del dia 2022-10-27
-2022-11-15 12:06:48,227 - INFO - Se han borrado los datos del paciente con id 500
-2022-11-15 12:06:48,377 - INFO - Se han borrado los datos del doctor con id 500
-2022-11-15 12:16:11,427 - DEBUG - Paciente que se intenta buscar:None
-2022-11-15 12:16:11,427 - ERROR - Se ha buscado el id de paciente 500 pero no existe
-2022-11-15 12:16:11,493 - DEBUG - Se intenta crear un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:16:11,587 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:16:11,636 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
-2022-11-15 12:16:11,636 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:16:11,791 - DEBUG - Se intentan modificar los datos del paciente 500
-2022-11-15 12:16:11,843 - DEBUG - Estos son los datos que se introducen (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:16:11,843 - INFO - Se han modificado los datos del paciente con id 500
-2022-11-15 12:16:11,944 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:16:11,944 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:16:12,099 - DEBUG - Doctor que se intenta buscar:None
-2022-11-15 12:16:12,099 - ERROR - Se ha buscado el id de doctor 500 pero no existe
-2022-11-15 12:16:59,660 - INFO - Se ha consultado los pacientes que hay
-2022-11-15 12:16:59,660 - DEBUG - Estos son los pacientes que se han consultado: [(1, 'Juan', 'Anacleto', 1, 'Calle 1', 'Madrid', '123456789'), (2, 'Carlos', 'Benancio', 2, 'Calle 2', 'Madrid', '234567891'), (3, 'Antonio', 'Caralarga', 3, 'Calle 3', 'Madrid', '345678912'), (4, 'Miguel', 'Donostia', 4, 'Calle 4', 'Madrid', '456789123'), (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')]
-2022-11-15 12:17:09,382 - INFO - Se han borrado los datos del paciente con id 500
-2022-11-15 12:17:24,601 - DEBUG - Paciente que se intenta buscar:None
-2022-11-15 12:17:24,601 - ERROR - Se ha buscado el id de paciente 500 pero no existe
-2022-11-15 12:17:24,638 - DEBUG - Se intenta crear un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:17:24,804 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
-2022-11-15 12:17:24,854 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
-2022-11-15 12:17:24,855 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:17:25,008 - DEBUG - Se intentan modificar los datos del paciente 500
-2022-11-15 12:17:25,055 - DEBUG - Estos son los datos que se introducen (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:17:25,055 - INFO - Se han modificado los datos del paciente con id 500
-2022-11-15 12:17:25,165 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
-2022-11-15 12:17:25,165 - INFO - Se ha buscado al paciente con el id 500
-2022-11-15 12:17:25,265 - DEBUG - Doctor que se intenta buscar:None
-2022-11-15 12:17:25,265 - ERROR - Se ha buscado el id de doctor 500 pero no existe
-2022-11-15 12:17:25,319 - DEBUG - Se intenta crear un doctor con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
-2022-11-15 12:17:25,418 - INFO - Se ha creado un paciente con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
-2022-11-15 12:17:25,470 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor')
-2022-11-15 12:17:25,470 - INFO - Se ha buscado al doctor con el id 500
-2022-11-15 12:17:25,623 - DEBUG - Se intentan modificar los datos del doctor con id 500
-2022-11-15 12:17:25,670 - DEBUG - Estos son los datos que se introducen (500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
-2022-11-15 12:17:25,670 - INFO - Se han modificado los datos del doctor con id 500
-2022-11-15 12:17:25,774 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
-2022-11-15 12:17:25,775 - INFO - Se ha buscado al doctor con el id 500
-2022-11-15 12:17:25,878 - DEBUG - Cita que se intenta buscar:None
-2022-11-15 12:17:25,878 - ERROR - Se ha buscado la cita del dia 2022-10-27 pero no existe
-2022-11-15 12:17:25,933 - DEBUG - Se intenta crear una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
-2022-11-15 12:17:26,033 - INFO - Se ha creado una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
-2022-11-15 12:17:26,081 - DEBUG - Cita que se intenta buscar:[(500, 500, datetime.date(2022, 10, 27), 'La direccion 1')]
-2022-11-15 12:17:26,083 - INFO - Se ha buscado las citas del paciente con id 500
-2022-11-15 12:17:26,251 - DEBUG - Se intentan modificar las citas del dia 2022-10-27
-2022-11-15 12:17:26,343 - DEBUG - Estos son los datos que se introducen en la cita (500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
-2022-11-15 12:17:26,344 - INFO - Se han modificado las citas del dia 2022-10-27
-2022-11-15 12:17:26,545 - DEBUG - Cita que se intenta buscar:(500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
-2022-11-15 12:17:26,545 - INFO - Se ha buscado la cita del dia 2022-10-27
-2022-11-15 12:17:26,776 - INFO - Se han borrado las citas del dia 2022-10-27
-2022-11-15 12:17:26,954 - INFO - Se han borrado los datos del paciente con id 500
-2022-11-15 12:17:27,057 - INFO - Se han borrado los datos del doctor con id 500
+2022-11-15 14:06:54,326 - DEBUG - Paciente que se intenta buscar:None
+2022-11-15 14:06:54,326 - ERROR - Se ha buscado el id de paciente 500 pero no existe
+2022-11-15 14:06:54,359 - DEBUG - Se intenta crear un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
+2022-11-15 14:06:54,530 - INFO - Se ha creado un paciente con {'id_paciente': 500, 'nombre_paciente': 'Nombre', 'apellidos_paciente': 'Apellidos', 'numero_historial_clinico': 123456, 'domicilio': 'Calle sin Nombre 123', 'poblacion_provincia': 'Madrid,MAdsrid', 'telefono': '516321456'}
+2022-11-15 14:06:54,632 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,MAdsrid', '516321456')
+2022-11-15 14:06:54,633 - INFO - Se ha buscado al paciente con el id 500
+2022-11-15 14:06:54,863 - DEBUG - Se intentan modificar los datos del paciente 500
+2022-11-15 14:06:54,963 - DEBUG - Estos son los datos que se introducen (500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
+2022-11-15 14:06:54,963 - INFO - Se han modificado los datos del paciente con id 500
+2022-11-15 14:06:55,371 - DEBUG - Paciente que se intenta buscar:(500, 'Nombre', 'Apellidos', 123456, 'Calle sin Nombre 123', 'Madrid,Madrid', '516321456')
+2022-11-15 14:06:55,371 - INFO - Se ha buscado al paciente con el id 500
+2022-11-15 14:06:55,478 - DEBUG - Doctor que se intenta buscar:None
+2022-11-15 14:06:55,478 - ERROR - Se ha buscado el id de doctor 500 pero no existe
+2022-11-15 14:06:55,534 - DEBUG - Se intenta crear un doctor con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
+2022-11-15 14:06:55,633 - INFO - Se ha creado un paciente con {'id_doctor': 500, 'nombre': 'Nombre Doctor', 'apellidos': 'Apellidos Doctor', 'sexo': 'Mujer', 'fecha_nacimiento': datetime.date(1951, 10, 25), 'especialidad': 'Especialidad Doctor', 'numero_colegiado': 123456, 'cargo': 'Cargo Doctor'}
+2022-11-15 14:06:55,682 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor')
+2022-11-15 14:06:55,682 - INFO - Se ha buscado al doctor con el id 500
+2022-11-15 14:06:55,862 - DEBUG - Se intentan modificar los datos del doctor con id 500
+2022-11-15 14:06:55,954 - DEBUG - Estos son los datos que se introducen (500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
+2022-11-15 14:06:55,954 - INFO - Se han modificado los datos del doctor con id 500
+2022-11-15 14:06:56,065 - DEBUG - Doctor que se intenta buscar:(500, 'Nombre Doctor', 'Apellidos Doctor', 'Mujer', datetime.date(1951, 10, 25), 'Especialidad Doctor', 123456, 'Cargo Doctor actualizado')
+2022-11-15 14:06:56,065 - INFO - Se ha buscado al doctor con el id 500
+2022-11-15 14:06:56,247 - DEBUG - Cita que se intenta buscar:None
+2022-11-15 14:06:56,247 - ERROR - Se ha buscado la cita del dia 2022-10-27 pero no existe
+2022-11-15 14:06:56,275 - DEBUG - Se intenta crear una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
+2022-11-15 14:06:56,372 - INFO - Se ha creado una cita con {'fecha': datetime.date(2022, 10, 27), 'direccion': 'La direccion 1', 'id_paciente': 500, 'id_doctor': 500}
+2022-11-15 14:06:56,452 - DEBUG - Cita que se intenta buscar:[(500, 500, datetime.date(2022, 10, 27), 'La direccion 1')]
+2022-11-15 14:06:56,452 - INFO - Se ha buscado las citas del paciente con id 500
+2022-11-15 14:06:56,598 - DEBUG - Se intentan modificar las citas del dia 2022-10-27
+2022-11-15 14:06:56,679 - DEBUG - Estos son los datos que se introducen en la cita (500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
+2022-11-15 14:06:56,680 - INFO - Se han modificado las citas del dia 2022-10-27
+2022-11-15 14:06:56,789 - DEBUG - Cita que se intenta buscar:(500, 500, datetime.date(2022, 10, 27), 'La direccion 2')
+2022-11-15 14:06:56,789 - INFO - Se ha buscado la cita del dia 2022-10-27
+2022-11-15 14:06:56,966 - INFO - Se han borrado las citas del dia 2022-10-27
+2022-11-15 14:06:57,112 - INFO - Se han borrado los datos del paciente con id 500
+2022-11-15 14:06:57,297 - INFO - Se han borrado los datos del doctor con id 500
+2022-11-15 14:07:28,839 - DEBUG - Cita que se intenta buscar:[(1, 2, datetime.date(2022, 11, 18), 'La clinica'), (3, 2, datetime.date(2022, 11, 19), 'La clinica'), (4, 2, datetime.date(2022, 11, 20), 'La clinica')]
+2022-11-15 14:07:28,839 - INFO - Se ha buscado las citas del doctor con id 2
+2022-11-15 14:07:43,890 - INFO - Se ha consultado los doctores que hay
+2022-11-15 14:07:43,890 - DEBUG - Estos son los dotores que se han consultado: [(1, 'Doctor', 'Seï¿½or Doctor', 'Hombre', datetime.date(1975, 11, 14), 'La vida', 1001, 'Currito'), (2, 'Doctora', 'Seï¿½ora Doctora', 'Mujer', datetime.date(1987, 11, 17), 'Neumologia', 1002, 'Jefaza')]
+2022-11-15 14:08:00,391 - DEBUG - Se intenta crear un doctor con {'id_doctor': 3, 'nombre': 'Doctorino', 'apellidos': 'Doctorando', 'sexo': 'Hombreton', 'fecha_nacimiento': datetime.date(1960, 11, 15), 'especialidad': 'Cardiologo', 'numero_colegiado': 425, 'cargo': 'Cabo 1ï¿½'}
+2022-11-15 14:08:00,557 - INFO - Se ha creado un paciente con {'id_doctor': 3, 'nombre': 'Doctorino', 'apellidos': 'Doctorando', 'sexo': 'Hombreton', 'fecha_nacimiento': datetime.date(1960, 11, 15), 'especialidad': 'Cardiologo', 'numero_colegiado': 425, 'cargo': 'Cabo 1ï¿½'}
+2022-11-15 14:08:07,153 - INFO - Se ha consultado los doctores que hay
+2022-11-15 14:08:07,153 - DEBUG - Estos son los dotores que se han consultado: [(1, 'Doctor', 'Seï¿½or Doctor', 'Hombre', datetime.date(1975, 11, 14), 'La vida', 1001, 'Currito'), (2, 'Doctora', 'Seï¿½ora Doctora', 'Mujer', datetime.date(1987, 11, 17), 'Neumologia', 1002, 'Jefaza'), (3, 'Doctorino', 'Doctorando', 'Hombreton', datetime.date(1960, 11, 15), 'Cardiologo', 425, 'Cabo 1ï¿½')]
+2022-11-15 14:08:20,164 - INFO - Se ha consultado las citas que hay
+2022-11-15 14:08:20,165 - DEBUG - Estas son las citas que se han consultado: [(1, 2, datetime.date(2022, 11, 18), 'La clinica'), (3, 2, datetime.date(2022, 11, 19), 'La clinica'), (4, 2, datetime.date(2022, 11, 20), 'La clinica'), (1, 1, datetime.date(2022, 11, 17), 'El hospi')]
+2022-11-15 14:08:38,956 - DEBUG - Se intentan modificar las citas del dia 2022-11-17
+2022-11-15 14:08:39,003 - DEBUG - Estos son los datos que se introducen en la cita None
+2022-11-15 14:08:39,003 - INFO - Se han modificado las citas del dia 2022-11-17
+2022-11-15 14:08:48,708 - INFO - Se ha consultado las citas que hay
+2022-11-15 14:08:48,708 - DEBUG - Estas son las citas que se han consultado: [(1, 2, datetime.date(2022, 11, 18), 'La clinica'), (3, 2, datetime.date(2022, 11, 19), 'La clinica'), (4, 2, datetime.date(2022, 11, 20), 'La clinica'), (1, 1, datetime.date(2022, 11, 22), 'El hospi')]
+2022-11-15 14:09:02,612 - INFO - Se ha consultado los pacientes que hay
+2022-11-15 14:09:02,612 - DEBUG - Estos son los pacientes que se han consultado: [(1, 'Juan', 'Anacleto', 1, 'Calle 1', 'Madrid', '123456789'), (3, 'Antonio', 'Caralarga', 3, 'Calle 3', 'Madrid', '345678912'), (4, 'Miguel', 'Donostia', 4, 'Calle 4', 'Madrid', '456789123'), (2, 'Borrado', 'Seï¿½or', 2, 'Ninguno', 'Mordo, Tierramedia', '666000666')]
+2022-11-15 14:09:15,742 - INFO - Se han borrado los datos del paciente con id 2
+2022-11-15 14:09:22,522 - INFO - Se ha consultado los pacientes que hay
+2022-11-15 14:09:22,522 - DEBUG - Estos son los pacientes que se han consultado: [(1, 'Juan', 'Anacleto', 1, 'Calle 1', 'Madrid', '123456789'), (3, 'Antonio', 'Caralarga', 3, 'Calle 3', 'Madrid', '345678912'), (4, 'Miguel', 'Donostia', 4, 'Calle 4', 'Madrid', '456789123')]

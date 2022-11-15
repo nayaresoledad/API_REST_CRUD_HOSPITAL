@@ -14,7 +14,7 @@ import os
 logging.basicConfig(
     level=logging.DEBUG if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
     filename="logging_record.log", 
-    filemode="w", #Cmabiar a "a" cuando no se quiera sobreescribir los logs
+    filemode="a", #Cmabiar a "w" cuando se quiera sobreescribir los logs
     format="%(asctime)s - %(levelname)s - %(message)s")
 
 #Guardamos la función router en una variable para usarla después.
@@ -104,7 +104,7 @@ async def get_doctor(doctor_id: int):
         return result    
 
 #Añadir nuevos doctores a la base de datos
-@user.post("/doctores", status_code=HTTP_201_CREATED, tags=["Doctores"], summary="Añade un nuevo paciente")
+@user.post("/doctores", status_code=HTTP_201_CREATED, tags=["Doctores"], summary="Añade un nuevo médico")
 async def crear_doctor(data_doctor: DoctorSchema):
     with engine.connect() as conn:
         nuevo_doctor = data_doctor.dict()
