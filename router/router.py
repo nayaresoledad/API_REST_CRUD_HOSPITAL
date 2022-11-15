@@ -8,10 +8,11 @@ from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CO
 from typing import List
 from datetime import date
 import logging
+import os
 
 #Configuramos un logger para trackear las acciones en el CRUD
 logging.basicConfig(
-    level=logging.DEBUG, # if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
+    level=logging.DEBUG if os.environ.get("DEBUG_MODE") == "1" else logging.INFO,
     filename="logging_record.log", 
     filemode="w", #Cmabiar a "a" cuando no se quiera sobreescribir los logs
     format="%(asctime)s - %(levelname)s - %(message)s")

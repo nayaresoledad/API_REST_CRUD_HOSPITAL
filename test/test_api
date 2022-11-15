@@ -1,7 +1,5 @@
 import unittest
 import requests
-from typing import List
-
 
 class TestPacientes(unittest.TestCase):
    URL= "http://127.0.0.1:8000/pacientes"
