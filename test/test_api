@@ -23,10 +23,9 @@ class TestPacientes(unittest.TestCase):
      "telefono": "516321456"
     }
 
-   def test_1_get_all_pacientes(self):
-     resp = requests.get(self.URL)
-     self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 4 )
+   def test_1_get_paciente_no_existe(self):
+     resp = requests.get(self.URL + "/500")
+     self.assertEqual(resp.status_code, 404)
      print("Test 1 complete")
 
    def test_2_post_paciente(self):
@@ -76,10 +75,9 @@ class TestDoctores(unittest.TestCase):
      "cargo": "Cargo Doctor actualizado"
     }
 
-   def test_5_get_all_doctores(self):
-     resp = requests.get(self.URL)
-     self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 2 )
+   def test_5_get_doctor_no_existe(self):
+     resp = requests.get(self.URL + "/500")
+     self.assertEqual(resp.status_code, 404)
      print("Test 5 complete")
 
    def test_6_post_doctores(self):
@@ -131,10 +129,9 @@ class TestCodigo_cita(unittest.TestCase):
       }
     ]
 
-   def test_9_get_all_codigo_cita(self):
-     resp = requests.get(self.URL)
-     self.assertEqual(resp.status_code, 200)
-     self.assertEqual(len(resp.json()), 4 )
+   def test_9_get_codigo_cita_no_existe(self):
+     resp = requests.get(self.URL + "/2022-10-27")
+     self.assertEqual(resp.status_code, 404)
      print("Test 9 complete")
 
    def test_10_post_codigo_cita(self):
@@ -166,21 +163,21 @@ if __name__ == "__main__":
  tester_Pacientes = TestPacientes()
 
 
- tester_Pacientes.test_1_get_all_pacientes()
+ tester_Pacientes.test_1_get_paciente_no_existe()
  tester_Pacientes.test_2_post_paciente()
  tester_Pacientes.test_3_get_specific_paciente()
  tester_Pacientes.test_4_update_specific_paciente()
  
  tester_Doctores = TestDoctores()
 
- tester_Doctores.test_5_get_all_doctores()
+ tester_Doctores.test_5_get_doctor_no_existe()
  tester_Doctores.test_6_post_doctores()
  tester_Doctores.test_7_get_specific_doctores()
  tester_Doctores.test_8_update_specific_doctores()
 
  tester_Codigo_Cita = TestCodigo_cita()
 
- tester_Codigo_Cita.test_9_get_all_codigo_cita()
+ tester_Codigo_Cita.test_9_get_codigo_cita_no_existe()
  tester_Codigo_Cita.test_10_post_codigo_cita()
  tester_Codigo_Cita.test_11_get_specific_codigo_cita()
  tester_Codigo_Cita.test_12_update_specific_codigo_cita()
