@@ -1,6 +1,6 @@
 from sqlalchemy import  Table, Column, String, Integer, ForeignKey
 from sqlalchemy.sql.sqltypes import Integer, String, Date
-from config.db import engine, meta_data
+from app.config.db import engine, meta_data
 
 """"Modelos de datos, como voy a guaradar los datos"""
 

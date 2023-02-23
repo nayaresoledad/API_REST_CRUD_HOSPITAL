@@ -54,3 +54,4 @@
 2022-11-15 14:09:15,742 - INFO - Se han borrado los datos del paciente con id 2
 2022-11-15 14:09:22,522 - INFO - Se ha consultado los pacientes que hay
 2022-11-15 14:09:22,522 - DEBUG - Estos son los pacientes que se han consultado: [(1, 'Juan', 'Anacleto', 1, 'Calle 1', 'Madrid', '123456789'), (3, 'Antonio', 'Caralarga', 3, 'Calle 3', 'Madrid', '345678912'), (4, 'Miguel', 'Donostia', 4, 'Calle 4', 'Madrid', '456789123')]
+2023-02-20 14:41:00,939 - INFO - Se ha entrado en la raiz

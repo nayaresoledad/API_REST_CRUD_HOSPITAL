@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Response, HTTPException
-from schema.paciente_schema import PacienteSchema
-from schema.doctor_schema import DoctorSchema
-from schema.codigocita_schema import CodigocitaSchema
-from config.db import engine
-from model.user import doctor, paciente, codigo_cita
+from app.schema.paciente_schema import PacienteSchema
+from app.schema.doctor_schema import DoctorSchema
+from app.schema.codigocita_schema import CodigocitaSchema
+from app.config.db import engine
+from app.model.user import doctor, paciente, codigo_cita
 from starlette.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_503_SERVICE_UNAVAILABLE
 from typing import List
 from datetime import date

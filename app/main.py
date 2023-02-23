@@ -1,8 +1,8 @@
 # De la libreria fastapi importamos FastAPI para poder hacer nuestra api
 from fastapi import FastAPI
 # Del archivo router en la carpeta router importamos user que es el nombre que tienen nuestras funciones
-from router.router import user
-from doc import docu
+from app.router.router import user
+from app.doc import docu
 
 # Declaramos la variable que va a ser una instancia de FastAPI
 app = FastAPI(
