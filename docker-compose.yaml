@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgresqldb:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=myuser
+      - POSTGRES_DB=fastapi_database
+  app:
+    container_name: api_hospital
+    image: 'hospital4'
+    build: ./
+    ports:
+      - '8000:8000'
+    depends_on:
+      - postgresqldb
