@@ -15,10 +15,10 @@ pip install psycopg2
 pip install dotenv
 ```
 3. Descarga el contenido del repositorio https://github.com/Factoria-F5-AI-Bootcamp-1-Edicion/hospital-base.git
-4. Solicite los datos de acceso a la base de datos del propietario e introdúzcaos en un archivo **.env** y ponga este archivo en la misma carpeta que el resto de archivos de la API. ![datos sensibles](img/basedatos.png)
+4. Solicite los datos de acceso a la base de datos del propietario e introdúzcaos en un archivo **.env** y ponga este archivo en la carpeta raíz. ![datos sensibles](img/basedatos.png)
 5. Desde la terminal, diríjase a la cArpeta que contiene los archivos de la API y desde allí ejecute
 ```
-uvicorn main:app
+uvicorn app.main:app
 ```
    Esta terminal debe permanecer abierta para el correcto funcionamiento de la API.
 
@@ -47,6 +47,26 @@ Tras ejecutar ese comando debería aparecer una salida mostrando los test comple
 
 Si alguno de los 15 tests fallaran habría que revisar el error y arreglar el problema antes de empezar a utilizar la API.
 
+## ***¿Cómo levantar el Docker?***
+
+1. Descargue e instale [docker](https://docs.docker.com/engine/install/ubuntu/) (dependerá de su S.O.).
+2. Cree un archivo .env con los datos de autenticación. Estos datos serán los que indique en el archivo **docker-compose.yaml** (en environment). En este caso la direccion es:
+![direccion](img/basedatos.png)
+3. En el directorio raíz del proyecto ejecute
+```
+docker build -t hospital4 .
+```
+Esto creará una imagen con nombre **hospital4**. Usaremos esta imagen para levantar la API más adelante.
+4. Descargue una imagen de postgresql, le recomendamos la más sencilla, llamada postgres. Ejecute en su terminal:
+```
+docker pull postgres
+```
+Esto descargará la imagen de postgres, para crear una base de datos dentro del contenedor, que se conectará a nuestra APP.
+5. Ya teniendo las dos imágenes que necesita es el momentor de levantar el docker-compose. En el directorio raíz ejecute:
+```
+docker-compose up
+```
+Con esto quedará levantada la API conectada a un servidor postgres, ambos en contenedores. Para cerrar el servicio pulse **CTRL+C**.
 
 ## ***¿Para qué puedo utilizar esta API?***
 
